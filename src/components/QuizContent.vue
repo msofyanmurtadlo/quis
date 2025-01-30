@@ -1,11 +1,24 @@
+<script setup>
+import { defineProps } from "vue";
+const { question } = defineProps(["question"]);
+const emit = defineEmits(["selectedOption"]);
+function emitSelectedOption(option) {
+  emit("selectedOption", option);
+}
+</script>
 <template>
   <section id="question-container">
-    <h1 class="question-title">Test</h1>
+    <h1 class="question-title">{{ question.text }}</h1>
   </section>
   <section id="options-container">
-    <div class="option">
-      <p class="option-label">a</p>
-      <div class="option-value">1</div>
+    <div
+      class="option"
+      v-for="option in question.answers"
+      :key="option.id"
+      @click="emitSelectedOption(option)"
+    >
+      <p class="option-label">{{ option.label }}</p>
+      <div class="option-value">{{ option.text }}</div>
     </div>
   </section>
 </template>

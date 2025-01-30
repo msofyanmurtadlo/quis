@@ -1,14 +1,20 @@
+<script setup>
+import { defineProps } from "vue";
+const { questionPage, barPercentage } = defineProps([
+  "questionPage",
+  "barPercentage",
+]);
+</script>
 <template>
   <header>
-    <h4>Questions</h4>
+    <h4>Questions {{ questionPage }}</h4>
     <div class="bar">
-      <div class="bar-progrss"></div>
+      <div class="bar-progrss" :style="{ width: barPercentage }"></div>
     </div>
   </header>
 </template>
 <style scoped>
 header {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -21,7 +27,7 @@ header {
   overflow: hidden;
 }
 .bar-progrss {
-  width: 50%;
+  width: 0%;
   height: 100%;
   background-color: #4caf50;
 }
